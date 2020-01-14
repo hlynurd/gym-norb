@@ -39,7 +39,7 @@ class NorbEnv(gym.Env):
     my_path = os.path.abspath(os.path.dirname(__file__))
     dataset_loc = os.path.join(my_path, 'dataset_norb.p')
     max_ep_time = 1500
-    scenarios = ['dense_reward', 'sparse_reward', 'one_shot']
+    scenarios = ['dense_reward', 'sparse_reward', 'one_shot', 'variable_maxlength']
     elevation_angles = 9
     azimuth_angles = 18
     max_traj_len = elevation_angles + azimuth_angles - 2
@@ -160,7 +160,10 @@ class NorbEnv(gym.Env):
                             self.item[self.target_index].image_rt), axis=2)
         ##ob = ob[np.newaxis, np.newaxis, :]
         self._seed = np.random.rand()
-        self.ep_time_left = self.max_ep_time
+        if self.scenario == self.scenarios[3]:
+            self.ep_time_left = self._viewpoint_dist(self.item[self.current_index], self.item[self.target_index])
+        else:
+            self.ep_time_left = self.max_ep_time
         return ob
 
     def render(self, mode='human', close=False):
