@@ -38,7 +38,7 @@ class NorbEnv(gym.Env):
     num_actions = 4
     my_path = os.path.abspath(os.path.dirname(__file__))
     dataset_loc = os.path.join(my_path, 'dataset_norb.p')
-    max_ep_time = 1500
+    max_ep_time = 15
     scenarios = ['dense_reward', 'sparse_reward', 'one_shot', 'variable_maxlength']
     elevation_angles = 9
     azimuth_angles = 18
