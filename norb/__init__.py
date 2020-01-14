@@ -18,3 +18,9 @@ register(
     entry_point='norb.norb:NorbEnv',
     kwargs={'scenario': NorbEnv.scenarios[2]}
 )
+
+register(
+    id='Norb-v3',
+    entry_point='norb.norb:NorbEnv',
+    kwargs={'scenario': NorbEnv.scenarios[3]}
+)
