@@ -153,7 +153,12 @@ class NorbEnv(gym.Env):
 
     def reset(self):
         self.current_index = np.random.randint(self.max_index)
-        self.target_index = np.random.randint(self.max_index)
+        easy_task = True
+        if easy_task: 
+            print("XXX: Too easy task!")
+            self.target_index = 37
+        else:
+            self.target_index = np.random.randint(self.max_index)
         ob = np.stack((self.item[self.current_index].image_lt,
                             self.item[self.current_index].image_rt,
                             self.item[self.target_index].image_lt,
